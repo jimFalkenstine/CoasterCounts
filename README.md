@@ -1,56 +1,48 @@
-# CoasterCounts
-A roller coaster database written in T-SQL
+# CoasterCounts  Database
+
 ## Introduction
-CoasterCounts is a relational database database written in T-SQL for Microsoft SQL Server.
+This repository serves as my final project for the [Code Louisville](https://www.codelouisville.org) Fall 2021 SQL Course.  The purpose of this code is to demonstrate the use of SQL and Git.
 
-## DDL (Data Definition Language)
-CoasterCounts is a relational database consisting of five tables: Parks, Manufacturers, Coasters, Riders, and Coaster Counts.  These tables are created by the DDL (Data Definition Language) stored in the CoasterCountsDDL.sql file.  Three of the tables have four or more columns.  Both the Parks and Manufacturers tables have six columns.  The Coasters table has twelve columns.  
+## Project Description
 
-### Relationships
-The Riders and Coasters tables have a many-to-many relationship.  Each Rider can ride many Coasters.  Each Coaster can be ridden by many Riders.  The Manufacturers and Coaster tables have a one-to-many relationship.  Each Manufacturer can make many Coasters.  Each Coaster can have only one Manufacturer.  
+**Coaster Counts**
 
-### Datatypes
-The CoasterCounts database includes three different datatypes: int, varchar and date.  For example, in the PARKS table, the PArkID column is of type int, the ParkName column is of type varchar(255), and the OpeningDate column is of type date.
-
-### Primary Keys/Foreign Keys
-Each table in the CoasterCounts table is related to one or more tables via a primary key/foreign key relationship.  For example in the Parks table the ParkID column is the primary key.  In the Coasters table, the CoasterParkID column is a foreign key since it references the ParkID in the Parks table.
-
-## DML (Data Manipulation Language)
-The CoasterCounts database is populated with data using the DML (Data Manipulation Language) stored in the CoasterCountsDML.sql file.
-
-## Stored Procedures
-I created four stored procedures that expose CRUD (Create, Read, Update, and Delete Functionality).  The stores procedures can be found in the CoasterCountsSprocs.sql file.
-
-### Create
-The AddRider stored procedure adds a new Rider to the Riders table.  It has two parameters.  The parameters are @RiderName of type varchar(255) and @RiderBirthdate of type date.
-
-### Read
-The CoasterCount stored procedure performs a query that lists the Coaster Count of a particular Rider according to their RiderID.  The results of the query displays the rider's name, the name of each coaster ridden, and the theme park where each coaster is located.  The CoasterCount procedure has @RiderID parameter of type int.   
-
-### Update
-The AddCoasterToCount stored procedure updates an individual Rider's Coaster Count.  The AddCoasterToCount takes @RiderID and @CoasterID  both of type int as parameters.  
-
-### Delete
-The DeleteRider stored procedure deletes an individual
+Coaster Counts is a sample database for tracking roller coaster stats.  You can also track the roller coasters you and your friends have ridden  By executing stored procedures, you can add a rider, read a rider's coaster count, update a coaster's status if it's been removed, and delete a coaster from a rider's coaster count.
 
 ## Features
-### Feature 1
-I created a stored procedure called CoasterCount that performs a query that displays a Rider's name, the names of the Coasters they have ridden and the Theme Parks where the Coasters are located.  CoasterCount has 1 parameter, @RiderID of type int.  
 
-Write a SELECT query that uses a WHERE clause.
-Write a  SELECT query that utilizes a JOIN.
-Write a  SELECT query that utilizes a JOIN with 3 or more tables.
-Write a  SELECT query that utilizes a variable in the WHERE clause.
+- Maintain lists of Roller Coasters, Theme Parks, and Roller Coaster Manufacturers
+- Track riders' coaster counts
 
-### Feature 2
-Write a DML statement that DELETEs a set of rows with a WHERE clause. The values used in the WHERE clause should be a variable.
+## User Instructions
 
-I created a stored procedure called Delete Rider that deletes a Rider with a specific RiderID.  DeleteRider has 1 parameter an integer called RiderID.
+| Feature | Command |
+| ---------- | ---------- |
+| Add a Rider | AddRider @RiderName = "Rider Name", @RiderBirthdate = "Rider Birthdate"  |
+| List a Rider's Coaster Count | CoasterCount @RiderID = "Rider ID" |
+| Update a Coaster's Status | UpdateCoasterStatus @CoasterID = "Coaster ID" |
+| Delete a Coaster from a Rider's Coaster Count | DeleteCoasterFromCount @RiderID = "Rider ID", @CoasterID = "Coaster ID" |
 
-### Feature 3
-Optimizing a Database.
+## Technical Instructions
 
+- Requires MS SQL Server
+- Execute the CoasterCountsDDL.sql script to create the database objects
+- Execute the CoasterCountsDML.sql script to load the sample data
 
+## Project Requirements
 
+**Group 1: Reading Data from a Database**
 
+- Write a SELECT query that uses a WHERE clause.
+- Write a  SELECT query that utilizes a JOIN.
+- Write a  SELECT query that utilizes a JOIN with 3 or more tables.
+- Write a  SELECT query that utilizes a variable in the WHERE clause.
 
+**Group 2: Updating/Deleting Data from a Database**
+
+- Write a DML statement that UPDATEs a set of rows with a WHERE clause. The values used in the WHERE clause should be a variable.
+- Write a DML statement that DELETEs a set of rows with a WHERE clause. The values used in the WHERE clause should be a variable.
+
+**Group 3: Optimizing a Database**
+
+- Design a NONCLUSTERED INDEX with ONE KEY COLUMN that improves the performance of one of the above queries.
