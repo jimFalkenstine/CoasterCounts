@@ -1,8 +1,36 @@
-CREATE DATABASE [CoasterCounts];
-GO
+/* CoasterCountsDDL.sql
+ * Author: Jim Falkenstine
+ * Date Created: 10/17/2021
+ * Description DDL CoasterCounts app
+ *
+ * Tables:
+ *	Parks (ParkID, ParkName, ParkCity, ParkState, ParkCountry, OpeningDate)
+ *	Manufacturers (ManufacturerID, ManufacturerName, ManufacturerCity, ManufacturerState, ManufacturerCountry, ManufacturerStatus)
+ *	Coasters (CoasterID, CoasterName, CoasterParkID, CoasterType, CoasterDesign, CoasterManufacturerID, CoasterLength, CoasterHeight, CoasterSpeed, CoasterInversions, CoasterYear, CoasterStatus)
+ * 	Riders (RiderID, RiderName, RiderBirthdate)
+ *	CoasterCounts (RiderID, CoasterID)
+ *
+ * Indexes:
+ *	IX_ParkName
+ *	IX_CoasterName
+ *
+ * Stored Procedures
+ *	AddRider @RiderName, @RiderBirthdate
+ *	ReadCoasterCount @RiderID
+ *	UpdateCoasterStatus @CoasterID
+ *	DeleteRider @RiderID
+ *	DeleteCoasterFromCount @RiderID, @CoasterID
+ *
+ */
 
-USE [CoasterCounts];
-GO
+
+
+/***************************************************
+
+	Tables
+
+****************************************************/
+
 
 DROP TABLE IF EXISTS [CoasterCounts];
 GO
@@ -61,4 +89,72 @@ GO
 CREATE TABLE [CoasterCounts] (
     [RiderID] int REFERENCES [Riders],
     [CoasterID] int REFERENCES [Coasters]);
+GO
+
+
+/**************************************************
+
+	Indexes
+
+***************************************************/
+
+
+CREATE NONCLUSTERED INDEX IX_ParkName ON [Parks] (ParkName)
+GO
+
+
+CREATE NONCLUSTERED INDEX IX_CoasterName ON [Coasters] (CoasterName)
+GO
+
+
+/******************************************************
+
+	Stored Procedures
+
+*******************************************************/
+
+
+CREATE OR ALTER PROCEDURE AddRider
+	@RiderName varchar(255),
+	@RiderBirthdate date
+AS
+BEGIN
+	INSERT INTO [Riders] ([RiderName], [RiderBirthdate])
+		VALUES (@RiderName, @RiderBirthdate)
+END
+GO
+
+CREATE OR ALTER PROCEDURE ReadCoasterCount
+	@RiderID int
+AS
+BEGIN
+SELECT r.RiderName AS RiderName, c.CoasterName AS CoasterName, p.ParkName AS ParkName 
+FROM CoasterCounts cc
+JOIN Riders r ON cc.RiderID = r.RiderID
+JOIN Coasters c ON cc.CoasterID = c.CoasterID
+JOIN Parks p on p.ParkID = c.CoasterParkID
+WHERE cc.RiderID = @RiderID;
+END
+GO
+
+CREATE OR ALTER PROCEDURE UpdateCoasterStatus
+	@CoasterID int
+
+AS
+BEGIN
+	UPDATE [Coasters]
+	SET CoasterStatus = 'Removed'
+	WHERE CoasterID = @CoasterID;
+END
+GO
+
+CREATE OR ALTER PROCEDURE DeleteCoasterFromCount
+	@RiderID int,
+	@CoasterID int
+
+AS
+BEGIN
+	DELETE FROM [CoasterCounts] 
+	WHERE RiderID = @RiderID AND CoasterID = @CoasterID
+END
 GO
