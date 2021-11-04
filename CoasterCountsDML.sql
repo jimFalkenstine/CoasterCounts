@@ -1,5 +1,9 @@
-USE [CoasterCounts];
-GO
+/* CoasterCountsDML.sql
+ * Author: Jim Falkenstine
+ * Date Created: 10/25/2021
+ * Description: sample date for CoasterCounts app
+ */
+
 
 INSERT INTO [Parks] ([ParkName], [ParkCity], [ParkState], [ParkCountry], [OpeningDate])
     VALUES  ('Kings Island', 'Mason', 'Ohio', 'United States', '1972-04-29'),
