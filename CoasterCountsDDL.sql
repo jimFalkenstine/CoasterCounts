@@ -1,7 +1,7 @@
 /* CoasterCountsDDL.sql
  * Author: Jim Falkenstine
  * Date Created: 10/17/2021
- * Description DDL CoasterCounts app
+ * Description: DDL CoasterCounts app
  *
  * Tables:
  *	Parks (ParkID, ParkName, ParkCity, ParkState, ParkCountry, OpeningDate)
