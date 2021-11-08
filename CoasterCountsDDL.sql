@@ -83,7 +83,7 @@ GO
 CREATE TABLE [Riders] (
 	[RiderID] int identity PRIMARY KEY,
 	[RiderName] varchar(255),
-	[RiderBirthdate] DATE);
+	[RiderBirthdate] date);
 GO
 
 CREATE TABLE [CoasterCounts] (
@@ -139,7 +139,6 @@ GO
 
 CREATE OR ALTER PROCEDURE UpdateCoasterStatus
 	@CoasterID int
-
 AS
 BEGIN
 	UPDATE [Coasters]
@@ -151,7 +150,6 @@ GO
 CREATE OR ALTER PROCEDURE DeleteCoasterFromCount
 	@RiderID int,
 	@CoasterID int
-
 AS
 BEGIN
 	DELETE FROM [CoasterCounts] 
