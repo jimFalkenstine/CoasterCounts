@@ -22,7 +22,7 @@ Coaster Counts is a sample database for tracking roller coaster stats.  You can 
 | List Coasters by Theme Park | ReadCoastersByPark @ParkName = "Theme Park Name" |
 | List Coasters by Manufacturer | ReadCoastersbyManufacturer = "Coaster Manufacturer Name" |
 | List a Rider's Coaster Count | CoasterCount @RiderID = "Rider ID" |
-| Update a Coaster's Status | UpdateCoasterStatus @CoasterID = "Coaster ID" @CoasterStatus = "Coaster Staus" |
+| Update a Coaster's Status | UpdateCoasterStatus @CoasterID = "Coaster ID", @CoasterStatus = "Coaster Staus" |
 | Delete a Coaster from a Rider's Coaster Count | DeleteCoasterFromCount @RiderID = "Rider ID", @CoasterID = "Coaster ID" |
 
 ## Technical Instructions
@@ -40,7 +40,6 @@ Coaster Counts is a sample database for tracking roller coaster stats.  You can 
 - Write a SELECT query that utilizes a JOIN with 3 or more tables.
 - Write a SELECT query that utilizes a variable in the WHERE clause.
 - Write a SELECT query that utilizes an ORDER BY clause.
-
 
 **Group 2: Updating/Deleting Data from a Database**
 
