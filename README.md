@@ -7,20 +7,22 @@ This repository serves as my final project for the [Code Louisville](https://www
 
 **Coaster Counts**
 
-Coaster Counts is a sample database for tracking roller coaster stats.  You can also track the roller coasters you and your friends have ridden.  By executing stored procedures, you can add a rider, read a rider's coaster count, update a coaster's status if it's been removed, and delete a coaster from a rider's coaster count.
+Coaster Counts is a sample database for tracking roller coaster stats.  You can also track the roller coasters you and your friends have ridden.  By executing stored procedures, you can add a new rider, read coasters by theme park, read coasters by manufacturer, read a rider's coaster count, update a coaster's status, and delete a coaster from a rider's coaster count.
 
 ## Features
 
 - Maintain lists of Roller Coasters, Theme Parks, and Roller Coaster Manufacturers
-- Track riders' coaster counts
+- Track Riders' Coaster Counts
 
 ## User Instructions
 
 | Feature | Command |
 | ---------- | ---------- |
-| Add a Rider | AddRider @RiderName = "Rider Name", @RiderBirthdate = "Rider Birthdate"  |
+| Add a Rider | AddRider @RiderName = "Rider Name", @RiderBirthdate = "Rider Birthdate" |
+| List Coasters by Theme Park | ReadCoastersByPark @ParkName = "Theme Park Name" |
+| List Coasters by Manufacturer | ReadCoastersbyManufacturer = "Coaster Manufacturer Name" |
 | List a Rider's Coaster Count | CoasterCount @RiderID = "Rider ID" |
-| Update a Coaster's Status | UpdateCoasterStatus @CoasterID = "Coaster ID" |
+| Update a Coaster's Status | UpdateCoasterStatus @CoasterID = "Coaster ID" @CoasterStatus = "Coaster Staus" |
 | Delete a Coaster from a Rider's Coaster Count | DeleteCoasterFromCount @RiderID = "Rider ID", @CoasterID = "Coaster ID" |
 
 ## Technical Instructions
@@ -34,9 +36,11 @@ Coaster Counts is a sample database for tracking roller coaster stats.  You can 
 **Group 1: Reading Data from a Database**
 
 - Write a SELECT query that uses a WHERE clause.
-- Write a  SELECT query that utilizes a JOIN.
-- Write a  SELECT query that utilizes a JOIN with 3 or more tables.
-- Write a  SELECT query that utilizes a variable in the WHERE clause.
+- Write a SELECT query that utilizes a JOIN.
+- Write a SELECT query that utilizes a JOIN with 3 or more tables.
+- Write a SELECT query that utilizes a variable in the WHERE clause.
+- Write a SELECT query that utilizes an ORDER BY clause.
+
 
 **Group 2: Updating/Deleting Data from a Database**
 
