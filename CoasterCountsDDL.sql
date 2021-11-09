@@ -16,8 +16,8 @@
  *
  * Stored Procedures
  *	AddRider @RiderName, @RiderBirthdate
- *  ReadCoastersByPark @ParkName
- *  ReadCoastersByManufacturer @ManufacturerName
+ *	ReadCoastersByPark @ParkName
+ *	ReadCoastersByManufacturer @ManufacturerName
  *	ReadCoasterCount @RiderID
  *	UpdateCoasterStatus @CoasterID, @CoasterStatus
  *	DeleteCoasterFromCount @RiderID, @CoasterID
@@ -160,7 +160,7 @@ JOIN Riders r ON cc.RiderID = r.RiderID
 JOIN Coasters c ON cc.CoasterID = c.CoasterID
 JOIN Parks p on p.ParkID = c.CoasterParkID
 WHERE cc.RiderID = @RiderID
-GROUP BY r.RiderName, p.ParkName, C.CoasterName;
+ORDER BY p.ParkName, C.CoasterName;
 END
 GO
 
