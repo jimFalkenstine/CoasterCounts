@@ -160,7 +160,7 @@ JOIN Riders r ON cc.RiderID = r.RiderID
 JOIN Coasters c ON cc.CoasterID = c.CoasterID
 JOIN Parks p on p.ParkID = c.CoasterParkID
 WHERE cc.RiderID = @RiderID
-ORDER BY p.ParkName, C.CoasterName;
+ORDER BY p.ParkName, c.CoasterName;
 END
 GO
 
