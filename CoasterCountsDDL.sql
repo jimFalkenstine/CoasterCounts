@@ -12,13 +12,14 @@
  *
  * Indexes:
  *	IX_ParkName
- *	IX_CoasterName
+ *	IX_ManufacturerName
  *
  * Stored Procedures
  *	AddRider @RiderName, @RiderBirthdate
+ *  ReadCoastersByPark @ParkName
+ *  ReadCoastersByManufacturer @ManufacturerName
  *	ReadCoasterCount @RiderID
- *	UpdateCoasterStatus @CoasterID
- *	DeleteRider @RiderID
+ *	UpdateCoasterStatus @CoasterID, @CoasterStatus
  *	DeleteCoasterFromCount @RiderID, @CoasterID
  *
  */
@@ -103,7 +104,7 @@ CREATE NONCLUSTERED INDEX IX_ParkName ON [Parks] (ParkName)
 GO
 
 
-CREATE NONCLUSTERED INDEX IX_CoasterName ON [Coasters] (CoasterName)
+CREATE NONCLUSTERED INDEX IX_ManufacturerName ON [Manufacturers] (ManufacturerName)
 GO
 
 
@@ -124,6 +125,31 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE ReadCoastersByPark
+	@ParkName varchar(255)
+AS
+BEGIN
+SELECT c.CoasterName AS CoasterName, p.ParkName AS ParkName
+FROM Coasters c
+JOIN Parks p on p.ParkID = c.CoasterParkID
+WHERE ParkName = @ParkName
+ORDER BY c.CoasterName;
+END
+GO
+
+CREATE OR ALTER PROCEDURE ReadCoastersByManufacturer
+	@ManufacturerName varchar(255)
+AS
+BEGIN
+SELECT c.CoasterName AS CoasterName, p.ParkName AS ParkName, m.ManufacturerName AS ManufacturerName
+FROM Coasters c
+JOIN Parks p on p.ParkID = c.CoasterParkID
+JOIN Manufacturers m on m.ManufacturerID = c.CoasterManufacturerID
+WHERE m.ManufacturerName = @ManufacturerName
+ORDER BY p.ParkName, c.CoasterName;
+END
+GO
+
 CREATE OR ALTER PROCEDURE ReadCoasterCount
 	@RiderID int
 AS
@@ -133,16 +159,18 @@ FROM CoasterCounts cc
 JOIN Riders r ON cc.RiderID = r.RiderID
 JOIN Coasters c ON cc.CoasterID = c.CoasterID
 JOIN Parks p on p.ParkID = c.CoasterParkID
-WHERE cc.RiderID = @RiderID;
+WHERE cc.RiderID = @RiderID
+GROUP BY r.RiderName, p.ParkName, C.CoasterName;
 END
 GO
 
 CREATE OR ALTER PROCEDURE UpdateCoasterStatus
-	@CoasterID int
+	@CoasterID int,
+	@CoasterStatus varchar(255)
 AS
 BEGIN
 	UPDATE [Coasters]
-	SET CoasterStatus = 'Removed'
+	SET CoasterStatus = @CoasterStatus
 	WHERE CoasterID = @CoasterID;
 END
 GO
