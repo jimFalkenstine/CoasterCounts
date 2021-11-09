@@ -1,4 +1,4 @@
-# CoasterCounts  Database
+# CoasterCounts
 
 ## Introduction
 This repository serves as my final project for the [Code Louisville](https://www.codelouisville.org) Fall 2021 SQL Course.  The purpose of this code is to demonstrate the use of SQL and Git.
