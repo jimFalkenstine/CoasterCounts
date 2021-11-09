@@ -14,7 +14,7 @@
  *	IX_ParkName
  *	IX_ManufacturerName
  *
- * Stored Procedures
+ * Stored Procedures:
  *	AddRider @RiderName, @RiderBirthdate
  *	ReadCoastersByPark @ParkName
  *	ReadCoastersByManufacturer @ManufacturerName
