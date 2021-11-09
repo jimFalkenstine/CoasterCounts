@@ -7,7 +7,7 @@ This repository serves as my final project for the [Code Louisville](https://www
 
 **Coaster Counts**
 
-Coaster Counts is a sample database for tracking roller coaster stats.  You can also track the roller coasters you and your friends have ridden.  By executing stored procedures, you can add a new rider, read coasters by theme park, read coasters by manufacturer, read a rider's coaster count, update a coaster's status, and delete a coaster from a rider's coaster count.
+Coaster Counts is a sample database for tracking roller coaster stats.  You can also track the roller coasters you and your friends have ridden.  By executing stored procedures, you can add a new rider, list coasters by theme park, list coasters by manufacturer, list a rider's coaster count, update a coaster's status, and delete a coaster from a rider's coaster count.
 
 ## Features
 
@@ -30,6 +30,7 @@ Coaster Counts is a sample database for tracking roller coaster stats.  You can 
 - Requires MS SQL Server.
 - Execute the CoasterCountsDDL.sql script to create the database objects.
 - Execute the CoasterCountsDML.sql script to load the sample data.
+- The CoasterCounts.sql file has example commands showing how to use the stored procedures.
 
 ## Project Requirements
 
