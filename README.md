@@ -20,8 +20,8 @@ Coaster Counts is a sample database for tracking roller coaster stats.  You can 
 | ---------- | ---------- |
 | Add a Rider | AddRider @RiderName = "Rider Name", @RiderBirthdate = "Rider Birthdate" |
 | List Coasters by Theme Park | ReadCoastersByPark @ParkName = "Theme Park Name" |
-| List Coasters by Manufacturer | ReadCoastersbyManufacturer = "Coaster Manufacturer Name" |
-| List a Rider's Coaster Count | CoasterCount @RiderID = "Rider ID" |
+| List Coasters by Manufacturer | ReadCoastersByManufacturer = "Coaster Manufacturer Name" |
+| List a Rider's Coaster Count | ReadCoasterCount @RiderID = "Rider ID" |
 | Update a Coaster's Status | UpdateCoasterStatus @CoasterID = "Coaster ID", @CoasterStatus = "Coaster Staus" |
 | Delete a Coaster from a Rider's Coaster Count | DeleteCoasterFromCount @RiderID = "Rider ID", @CoasterID = "Coaster ID" |
 
