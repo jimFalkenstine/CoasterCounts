@@ -69,7 +69,7 @@ GO
 CREATE TABLE [Coasters] (
 	[CoasterID] int identity PRIMARY KEY,
 	[CoasterName] varchar(255) NOT NULL,
-	[CoasterParkID] int REFERENCES Parks,
+	[CoasterParkID] int REFERENCES [Parks],
 	[CoasterType] varchar(255),
 	[CoasterDesign] varchar(255),
 	[CoasterManufacturerID] int REFERENCES [Manufacturers],
